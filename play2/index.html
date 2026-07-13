@@ -315,6 +315,106 @@
   </div>
 </aside>
 
+<!-- ============ 上帝模式菜单（F2切换） ============ -->
+<div id="god-panel" class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 hidden">
+  <div class="glass-strong rounded-2xl p-5 w-[340px] max-h-[85vh] overflow-auto" style="border-color:#ff2d95;">
+    <div class="flex items-center justify-between mb-4">
+      <h3 class="font-display font-bold text-lg text-cyber-magenta glow-magenta tracking-wider flex items-center gap-2">
+        <i class="fa-solid fa-wand-magic-sparkles"></i> 上帝模式
+      </h3>
+      <button id="god-close" class="text-white/50 hover:text-white text-xl"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    
+    <!-- 开关列表 -->
+    <div class="space-y-2 mb-4">
+      <label class="flex items-center gap-3 cursor-pointer hover:bg-white/5 rounded-lg p-2">
+        <input type="checkbox" id="god-invincible" class="accent-cyber-cyan w-4 h-4">
+        <i class="fa-solid fa-shield-halved text-cyber-cyan w-5"></i>
+        <span class="text-sm flex-1">无敌</span>
+      </label>
+      <label class="flex items-center gap-3 cursor-pointer hover:bg-white/5 rounded-lg p-2">
+        <input type="checkbox" id="god-lives" class="accent-cyber-cyan w-4 h-4">
+        <i class="fa-solid fa-heart text-cyber-danger w-5"></i>
+        <span class="text-sm flex-1">无限生命</span>
+      </label>
+      <label class="flex items-center gap-3 cursor-pointer hover:bg-white/5 rounded-lg p-2">
+        <input type="checkbox" id="god-onehit" class="accent-cyber-cyan w-4 h-4">
+        <i class="fa-solid fa-skull-crossbones text-cyber-orange w-5"></i>
+        <span class="text-sm flex-1">一击必杀</span>
+      </label>
+      <label class="flex items-center gap-3 cursor-pointer hover:bg-white/5 rounded-lg p-2">
+        <input type="checkbox" id="god-nocd" class="accent-cyber-cyan w-4 h-4">
+        <i class="fa-solid fa-bolt text-cyber-gold w-5"></i>
+        <span class="text-sm flex-1">无冷却射击</span>
+      </label>
+      <label class="flex items-center gap-3 cursor-pointer hover:bg-white/5 rounded-lg p-2">
+        <input type="checkbox" id="god-triple" class="accent-cyber-cyan w-4 h-4">
+        <i class="fa-solid fa-bullseye text-cyber-cyan w-5"></i>
+        <span class="text-sm flex-1">三向弹常驻</span>
+      </label>
+      <label class="flex items-center gap-3 cursor-pointer hover:bg-white/5 rounded-lg p-2">
+        <input type="checkbox" id="god-shield" class="accent-cyber-cyan w-4 h-4">
+        <i class="fa-solid fa-shield text-cyber-gold w-5"></i>
+        <span class="text-sm flex-1">护盾常驻</span>
+      </label>
+      <label class="flex items-center gap-3 cursor-pointer hover:bg-white/5 rounded-lg p-2">
+        <input type="checkbox" id="god-freeze" class="accent-cyber-cyan w-4 h-4">
+        <i class="fa-solid fa-snowflake text-blue-400 w-5"></i>
+        <span class="text-sm flex-1">敌机停止移动</span>
+      </label>
+      <label class="flex items-center gap-3 cursor-pointer hover:bg-white/5 rounded-lg p-2">
+        <input type="checkbox" id="god-nofire" class="accent-cyber-cyan w-4 h-4">
+        <i class="fa-solid fa-ban text-cyber-violet w-5"></i>
+        <span class="text-sm flex-1">敌机不射击</span>
+      </label>
+      <label class="flex items-center gap-3 cursor-pointer hover:bg-white/5 rounded-lg p-2">
+        <input type="checkbox" id="god-debug" class="accent-cyber-cyan w-4 h-4">
+        <i class="fa-solid fa-terminal text-white/70 w-5"></i>
+        <span class="text-sm flex-1">显示调试信息</span>
+      </label>
+    </div>
+
+    <!-- 滑块 -->
+    <div class="space-y-3 mb-4">
+      <div class="flex items-center gap-2">
+        <label class="text-xs w-20 shrink-0">分数倍率</label>
+        <input type="range" id="god-scoremult" min="1" max="10" value="1" step="1" class="flex-1 accent-cyber-gold">
+        <span id="god-scoremult-val" class="text-xs w-6 text-cyber-gold text-right">1×</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <label class="text-xs w-20 shrink-0">生成间隔</label>
+        <input type="range" id="god-spawn" min="0.1" max="3" value="1.6" step="0.1" class="flex-1 accent-cyber-cyan">
+        <span id="god-spawn-val" class="text-xs w-6 text-cyber-cyan text-right">1.6s</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <label class="text-xs w-20 shrink-0">敌机速度</label>
+        <input type="range" id="god-speed" min="0.5" max="3" value="1" step="0.1" class="flex-1 accent-cyber-orange">
+        <span id="god-speed-val" class="text-xs w-6 text-cyber-orange text-right">1×</span>
+      </div>
+    </div>
+
+    <!-- 按钮组 -->
+    <div class="grid grid-cols-2 gap-2 text-xs">
+      <button id="god-levelup" class="btn-ghost px-3 py-2 rounded-lg"><i class="fa-solid fa-arrow-up mr-1"></i>立即升级</button>
+      <button id="god-win" class="btn-ghost px-3 py-2 rounded-lg"><i class="fa-solid fa-flag-checkered mr-1"></i>直接胜利</button>
+      <button id="god-skip" class="btn-ghost px-3 py-2 rounded-lg"><i class="fa-solid fa-forward mr-1"></i>跳过关卡</button>
+      <button id="god-powerup" class="btn-ghost px-3 py-2 rounded-lg"><i class="fa-solid fa-gift mr-1"></i>生成道具</button>
+      <button id="god-achreset" class="btn-ghost px-3 py-2 rounded-lg col-span-2"><i class="fa-solid fa-rotate-left mr-1"></i>重置成就解锁状态</button>
+      <button id="god-softreset" class="btn-ghost px-3 py-2 rounded-lg"><i class="fa-solid fa-eraser mr-1"></i>重置游戏(保留分数)</button>
+      <button id="god-hardreset" class="btn-ghost px-3 py-2 rounded-lg text-cyber-danger"><i class="fa-solid fa-bomb mr-1"></i>完全重置</button>
+    </div>
+
+    <div class="mt-4 text-center text-xs text-white/30">按 F2 或 ESC 关闭</div>
+  </div>
+</div>
+
+<!-- 上帝模式指示器 -->
+<div id="god-indicator" class="fixed bottom-3 left-1/2 -translate-x-1/2 z-20 hidden">
+  <div class="glass-strong rounded-full px-4 py-1.5 text-xs font-display font-semibold text-cyber-magenta border-cyber-magenta/50 tracking-wider animate-pulse">
+    <i class="fa-solid fa-wand-magic-sparkles mr-2"></i>上帝模式已激活
+  </div>
+</div>
+
 <!-- 预加载脚本：游戏主逻辑 -->
 <script>
 /* ============================================================
@@ -372,6 +472,23 @@ const game = {
   escapeWarn: 0,        // 警告条显示计时
 };
 
+// ============ 上帝模式状态 ============
+const god = {
+  invincible: false,      // 无敌
+  infiniteLives: false,   // 无限生命
+  oneHitKill: false,      // 一击必杀
+  noCooldown: false,      // 无冷却射击
+  tripleAlways: false,    // 三向弹常驻
+  shieldAlways: false,    // 护盾常驻
+  freezeEnemies: false,   // 敌机停止移动
+  noEnemyFire: false,     // 敌机不射击
+  showDebug: false,       // 显示调试信息
+  scoreMultiplier: 1,     // 分数倍率
+  spawnInterval: 1.6,     // 生成间隔
+  enemySpeedMult: 1,      // 敌机速度倍率
+};
+let godMenuOpen = false;
+
 // ============ 输入 ============
 const input = { left: false, right: false, up: false, down: false, fire: false };
 const keyMap = {
@@ -384,6 +501,7 @@ const keyMap = {
 window.addEventListener('keydown', (e) => {
   if (keyMap[e.code]) { input[keyMap[e.code]] = true; e.preventDefault(); }
   if (e.code === 'KeyP') { togglePause(); }
+  if (e.code === 'F2' || (e.code === 'Escape' && godMenuOpen)) { toggleGodMenu(); }
 });
 window.addEventListener('keyup', (e) => {
   if (keyMap[e.code]) { input[keyMap[e.code]] = false; e.preventDefault(); }
@@ -461,11 +579,13 @@ function spawnEnemy() {
 }
 
 function fireBullet() {
-  if (player.cooldown > 0) return;
+  // 上帝模式：无冷却射击
+  if (!god.noCooldown && player.cooldown > 0) return;
   player.cooldown = player.fireRate;
   game.shotsFired++;
   const bx = player.x, by = player.y - player.h / 2;
-  if (game.tripleShot > 0) {
+  // 上帝模式：三向弹常驻 或 原有三向弹效果
+  if (god.tripleAlways || game.tripleShot > 0) {
     bullets.push({ x: bx, y: by, vx: 0, vy: -12, w: 4, h: 14, color: '#00f0ff' });
     bullets.push({ x: bx, y: by, vx: -3.5, vy: -11, w: 4, h: 14, color: '#00f0ff' });
     bullets.push({ x: bx, y: by, vx: 3.5, vy: -11, w: 4, h: 14, color: '#00f0ff' });
@@ -852,31 +972,37 @@ function update(dt) {
 
   // 敌机生成
   game.spawnTimer = (game.spawnTimer || 0) - dt;
-  const spawnInterval = Math.max(0.4, 1.6 - game.level * 0.12);
+  // 上帝模式：使用自定义生成间隔
+  const baseInterval = god.spawnInterval > 0 ? god.spawnInterval : Math.max(0.4, 1.6 - game.level * 0.12);
   if (game.spawnTimer <= 0) {
     spawnEnemy();
-    game.spawnTimer = spawnInterval * rand(0.7, 1.3);
+    game.spawnTimer = baseInterval * rand(0.7, 1.3);
   }
 
   // 敌机移动 + 射击
   for (let i = enemies.length - 1; i >= 0; i--) {
     const e = enemies[i];
     e.phase += dt * 2;
-    e.y += e.speed;
-    e.x += Math.sin(e.phase) * e.swing;
+    // 上帝模式：敌机停止移动 / 速度倍率
+    const speedMod = god.freezeEnemies ? 0 : god.enemySpeedMult;
+    e.y += e.speed * speedMod;
+    e.x += Math.sin(e.phase) * e.swing * speedMod;
     e.x = clamp(e.x, e.w / 2, W - e.w / 2);
-    if (e.shootChance > 0 && Math.random() < e.shootChance) {
+    // 上帝模式：敌机不射击
+    if (!god.noEnemyFire && e.shootChance > 0 && Math.random() < e.shootChance) {
       const dx = player.x - e.x, dy = player.y - e.y;
       const d = Math.hypot(dx, dy) || 1;
       eBullets.push({ x: e.x, y: e.y + e.h / 2, vx: dx / d * 5, vy: dy / d * 5, w: 5, h: 5, color: '#ff2d95' });
     }
-    // 逃脱
+    // 逃脱（上帝模式无敌时不扣分）
     if (e.y > H + 30) {
       enemies.splice(i, 1);
-      game.score = Math.max(0, game.score - 50);
-      game.levelUntouched = false;
-      game.escapeWarn = 1.2;
-      document.getElementById('warn-bar').classList.remove('hidden');
+      if (!god.invincible) {
+        game.score = Math.max(0, game.score - 50);
+        game.levelUntouched = false;
+        game.escapeWarn = 1.2;
+        document.getElementById('warn-bar').classList.remove('hidden');
+      }
     }
   }
 
@@ -895,7 +1021,12 @@ function update(dt) {
       const b = bullets[j];
       if (Math.abs(b.x - e.x) < e.w / 2 + b.w / 2 && Math.abs(b.y - e.y) < e.h / 2 + b.h / 2) {
         bullets.splice(j, 1);
-        e.hp--;
+        // 上帝模式：一击必杀
+        if (god.oneHitKill) {
+          e.hp = 0;
+        } else {
+          e.hp--;
+        }
         game.shotsHit++;
         // 小命中粒子
         for (let k = 0; k < 4; k++) {
@@ -904,7 +1035,8 @@ function update(dt) {
         if (e.hp <= 0) {
           explode(e.x, e.y, e.color, e.type === 'heavy' ? 1.4 : 1);
           enemies.splice(i, 1);
-          game.score += e.score;
+          // 上帝模式：分数倍率
+          game.score += e.score * god.scoreMultiplier;
           game.totalKills++;
           game.levelKills++;
           maybeDropPowerup(e.x, e.y);
@@ -919,8 +1051,8 @@ function update(dt) {
     }
   }
 
-  // 碰撞：敌弹/敌机 vs 玩家
-  if (game.invincible <= 0) {
+  // 碰撞：敌弹/敌机 vs 玩家（上帝模式无敌时跳过）
+  if (game.invincible <= 0 && !god.invincible) {
     let hit = false;
     // 敌弹
     for (let i = eBullets.length - 1; i >= 0; i--) {
@@ -975,14 +1107,18 @@ function update(dt) {
 }
 
 function playerHit() {
-  if (game.shield) {
-    game.shield = false;
+  // 上帝模式：护盾常驻
+  if (game.shield || god.shieldAlways) {
+    if (!god.shieldAlways) game.shield = false;
     game.invincible = 1.0;
     showToast('护盾抵消！', '#ffd24a', 'fa-shield-halved');
     explode(player.x, player.y, '#ffd24a', 0.8);
     return;
   }
-  game.lives--;
+  // 上帝模式：无限生命
+  if (!god.infiniteLives) {
+    game.lives--;
+  }
   game.invincible = 2.0;
   game.levelUntouched = false;
   explode(player.x, player.y, '#00f0ff', 1.2);
@@ -1160,6 +1296,163 @@ if (!CanvasRenderingContext2D.prototype.roundRect) {
     return this;
   };
 }
+
+// ============ 上帝模式菜单逻辑 ============
+const godPanel = document.getElementById('god-panel');
+const godIndicator = document.getElementById('god-indicator');
+
+function toggleGodMenu() {
+  godMenuOpen = !godMenuOpen;
+  godPanel.classList.toggle('hidden', !godMenuOpen);
+  if (godMenuOpen && state === STATE.PLAYING) {
+    state = STATE.PAUSED; // 打开菜单时暂停
+  } else if (!godMenuOpen && state === STATE.PAUSED) {
+    state = STATE.PLAYING; // 关闭菜单时恢复
+    lastTime = performance.now();
+  }
+  updateGodIndicator();
+}
+
+function updateGodIndicator() {
+  const active = Object.values(god).some(v => v === true);
+  godIndicator.classList.toggle('hidden', !active);
+}
+
+function syncGodUI() {
+  document.getElementById('god-invincible').checked = god.invincible;
+  document.getElementById('god-lives').checked = god.infiniteLives;
+  document.getElementById('god-onehit').checked = god.oneHitKill;
+  document.getElementById('god-nocd').checked = god.noCooldown;
+  document.getElementById('god-triple').checked = god.tripleAlways;
+  document.getElementById('god-shield').checked = god.shieldAlways;
+  document.getElementById('god-freeze').checked = god.freezeEnemies;
+  document.getElementById('god-nofire').checked = god.noEnemyFire;
+  document.getElementById('god-debug').checked = god.showDebug;
+  document.getElementById('god-scoremult').value = god.scoreMultiplier;
+  document.getElementById('god-scoremult-val').textContent = god.scoreMultiplier + '×';
+  document.getElementById('god-spawn').value = god.spawnInterval;
+  document.getElementById('god-spawn-val').textContent = god.spawnInterval.toFixed(1) + 's';
+  document.getElementById('god-speed').value = god.enemySpeedMult;
+  document.getElementById('god-speed-val').textContent = god.enemySpeedMult.toFixed(1) + '×';
+  updateGodIndicator();
+}
+
+// 绑定开关
+const godToggles = ['invincible', 'lives', 'onehit', 'nocd', 'triple', 'shield', 'freeze', 'nofire', 'debug'];
+godToggles.forEach(key => {
+  const el = document.getElementById('god-' + key);
+  if (el) el.addEventListener('change', (e) => {
+    god[key === 'lives' ? 'infiniteLives' : (key === 'onehit' ? 'oneHitKill' : (key === 'nofire' ? 'noEnemyFire' : (key === 'freeze' ? 'freezeEnemies' : key)))] = e.target.checked;
+    updateGodIndicator();
+  });
+});
+
+// 绑定滑块
+document.getElementById('god-scoremult').addEventListener('input', (e) => {
+  god.scoreMultiplier = parseFloat(e.target.value);
+  document.getElementById('god-scoremult-val').textContent = god.scoreMultiplier + '×';
+});
+document.getElementById('god-spawn').addEventListener('input', (e) => {
+  god.spawnInterval = parseFloat(e.target.value);
+  document.getElementById('god-spawn-val').textContent = god.spawnInterval.toFixed(1) + 's';
+});
+document.getElementById('god-speed').addEventListener('input', (e) => {
+  god.enemySpeedMult = parseFloat(e.target.value);
+  document.getElementById('god-speed-val').textContent = god.enemySpeedMult.toFixed(1) + '×';
+});
+
+// 绑定按钮
+document.getElementById('god-close').addEventListener('click', toggleGodMenu);
+document.getElementById('god-levelup').addEventListener('click', () => {
+  if (state === STATE.PAUSED || state === STATE.PLAYING) {
+    levelUp();
+    showToast('关卡提升！', '#00f0ff', 'fa-arrow-up');
+  }
+});
+document.getElementById('god-win').addEventListener('click', () => {
+  game.score += 10000;
+  levelUp();
+  showToast('直接胜利！', '#ffd24a', 'fa-flag-checkered');
+});
+document.getElementById('god-skip').addEventListener('click', () => {
+  game.levelKills = game.levelTarget;
+  levelUp();
+  showToast('跳过关卡！', '#b026ff', 'fa-forward');
+});
+document.getElementById('god-powerup').addEventListener('click', () => {
+  if (player) {
+    const type = Math.random() < 0.5 ? 'triple' : 'shield';
+    powerups.push({ x: player.x, y: player.y - 60, vy: 0, type, phase: 0, r: 14 });
+    showToast('道具生成！', '#00f0ff', 'fa-gift');
+  }
+});
+document.getElementById('god-achreset').addEventListener('click', () => {
+  unlocked.clear();
+  renderAchList();
+  showToast('成就已重置', '#ff8c00', 'fa-rotate-left');
+});
+document.getElementById('god-softreset').addEventListener('click', () => {
+  enemies.length = 0;
+  eBullets.length = 0;
+  bullets.length = 0;
+  powerups.length = 0;
+  particles.length = 0;
+  if (player) { player.x = W / 2; player.y = H - 120; }
+  game.invincible = 2;
+  showToast('游戏重置（分数保留）', '#00f0ff', 'fa-eraser');
+});
+document.getElementById('god-hardreset').addEventListener('click', () => {
+  startGame();
+  Object.keys(god).forEach(k => { if (typeof god[k] === 'boolean') god[k] = false; });
+  god.scoreMultiplier = 1;
+  god.spawnInterval = 1.6;
+  god.enemySpeedMult = 1;
+  syncGodUI();
+  showToast('完全重置！', '#ff3860', 'fa-bomb');
+});
+
+syncGodUI();
+
+// 调试信息绘制
+let debugFPS = 0, debugFrames = 0, debugLastTime = performance.now();
+function drawDebugInfo() {
+  if (!god.showDebug || state === STATE.MENU) return;
+  debugFrames++;
+  const now = performance.now();
+  if (now - debugLastTime >= 1000) {
+    debugFPS = debugFrames;
+    debugFrames = 0;
+    debugLastTime = now;
+  }
+  ctx.save();
+  ctx.fillStyle = 'rgba(0,0,0,0.7)';
+  ctx.fillRect(10, 10, 160, 110);
+  ctx.strokeStyle = '#00f0ff';
+  ctx.lineWidth = 1;
+  ctx.strokeRect(10, 10, 160, 110);
+  ctx.font = '12px monospace';
+  ctx.fillStyle = '#00f0ff';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  const lines = [
+    `FPS: ${debugFPS}`,
+    `State: ${['MENU','PLAYING','PAUSED','OVER'][state]}`,
+    `Player: (${player?.x?.toFixed(0)||0}, ${player?.y?.toFixed(0)||0})`,
+    `Enemies: ${enemies?.length || 0}`,
+    `Bullets: ${bullets?.length || 0}`,
+    `Particles: ${particles?.length || 0}`,
+    `Level: ${game.level} (${game.levelKills}/${game.levelTarget})`,
+  ];
+  lines.forEach((line, i) => ctx.fillText(line, 16, 16 + i * 14));
+  ctx.restore();
+}
+
+// 在渲染循环中添加调试绘制
+const originalLoop = loop;
+loop = function(now) {
+  originalLoop(now);
+  drawDebugInfo();
+};
 
 })();
 </script>
